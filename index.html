@@ -1,422 +1,232 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0f766e">
-<title>TKJ Smart Learning - Kelas X</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>razenishere</title>
 <style>
-*{box-sizing:border-box}
-:root{--teal:#0f766e;--dark:#164e63;--pale:#e0f2fe;--ink:#1e293b;--muted:#64748b}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f1f5f9;color:var(--ink);line-height:1.6}
-button{border:0;border-radius:10px;padding:12px 15px;font-size:14px;font-weight:700;cursor:pointer}
-button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
-.site-header{background:linear-gradient(135deg,#0f766e,#164e63);color:#fff;text-align:center;padding:25px 16px}
-.site-header h1{font-size:clamp(23px,5vw,34px);margin:8px 0}
-.site-header p{margin:4px 0}
-.school-badge{display:inline-block;border:1px solid #ffffff80;border-radius:999px;padding:5px 12px;font-size:12px;letter-spacing:.4px}
-.wrap{width:min(100% - 28px,900px);margin:20px auto 32px}
-.panel{background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 16px #0f172a0d;margin-bottom:16px}
-h2{color:var(--teal);font-size:22px;line-height:1.3;margin-top:0}
-h3{font-size:17px;margin-bottom:7px}
-p{margin-top:7px}
-.hero{background:linear-gradient(135deg,#ccfbf1,#e0f2fe);border-radius:16px;padding:24px 20px;margin-bottom:16px}
-.hero h2{font-size:clamp(25px,6vw,36px);margin:0 0 8px;color:#134e4a}
-.teacher{font-weight:700;color:#134e4a}
-.objectives{padding-left:22px}
-.topic-grid{display:grid;grid-template-columns:1fr;gap:12px}
-.topic-card{border:1px solid #dbeafe;border-radius:13px;padding:16px;background:#f8fafc}
-.topic-card h3{margin:0 0 7px;color:#075985}
-.topic-card p{font-size:14px;color:#475569;min-height:42px}
-.topic-card button{width:100%;background:#0f766e;color:#fff}
-.primary{background:var(--teal);color:white;width:100%;margin-top:10px}
-.secondary{background:#e2e8f0;color:#1e293b;width:100%;margin-top:10px}
-.menu-btn{display:block;text-align:left;width:100%;background:#e0f2fe;color:#075985;margin:7px 0}
-.hidden{display:none!important}
-.pill{display:inline-block;background:#ccfbf1;color:#115e59;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:bold}
-.question{padding:14px 0 18px;border-bottom:1px solid #e2e8f0;margin-bottom:10px}
-.question:last-child{border-bottom:0}
-.question legend{font-weight:700;margin-bottom:10px}
-.option{display:flex;gap:9px;align-items:flex-start;padding:10px;border:1px solid #cbd5e1;background:#f8fafc;border-radius:9px;margin:7px 0;cursor:pointer;font-weight:normal}
-.option:has(input:checked){background:#ccfbf1;border-color:#0f766e}
-.option input{margin-top:5px;flex-shrink:0}
-.score{font-size:42px;font-weight:bold;text-align:center;color:var(--teal);margin:4px 0}
-.feedback{padding:13px;border-radius:10px;margin:10px 0;line-height:1.55}
-.correct{background:#dcfce7;color:#166534}
-.wrong{background:#fee2e2;color:#991b1b}
-.note{font-size:13px;color:var(--muted)}
-footer{text-align:center;color:#64748b;font-size:13px;padding:10px 15px 28px}
-@media(min-width:600px){.topic-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:24px}.hero{padding:30px}}
+  :root {
+    --bg: #0a0a0a;
+    --fg: #e6e6e6;
+    --dim: #555;
+    --accent: #ff2e2e;
+  }
+  html,body{height:100%;margin:0}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+    overflow:hidden;
+    position:relative;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body::before {
+    content:"";
+    position:fixed; inset:0;
+    background:repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,.015) 0 1px,
+      transparent 1px 3px
+    );
+    pointer-events:none;
+    z-index:10;
+  }
+
+  body::after {
+    content:"";
+    position:fixed; inset:0;
+    box-shadow: inset 0 0 150px 20px rgba(0,0,0,.9);
+    pointer-events:none;
+    z-index:9;
+  }
+
+  .box{
+    width:100%;
+    max-width:520px;
+    font-size:14px;
+    line-height:1.8;
+    position:relative;
+    z-index:20;
+  }
+
+  h1{
+    font-size:clamp(40px, 9vw, 64px);
+    font-weight:500;
+    letter-spacing:-.02em;
+    margin:0 0 4px;
+    color:#f0f0f0;
+  }
+  h1 em{font-style:normal; color:var(--accent)}
+
+  .name{
+    color:#8a8a8a;
+    font-size:13px;
+    letter-spacing:.08em;
+    margin-bottom:32px;
+  }
+
+  .lines{
+    border-left:1px solid #222;
+    padding-left:18px;
+    color:var(--dim);
+    font-size:13px;
+    margin-bottom:24px;
+  }
+  .lines div{padding:2px 0}
+  .lines span{color:#cfcfcf}
+
+  .term {
+    font-size:12px;
+    color:var(--dim);
+    line-height:1.6;
+    min-height: 1.6em;
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin-bottom: 28px;
+  }
+  .term .prompt { color: var(--accent); }
+  .term .cmd { color: #e6e6e6; }
+  .term .ok { color: #4af626; }
+  .term .cursor {
+    display:inline-block;
+    width:7px; height:13px;
+    background:var(--fg);
+    vertical-align:middle;
+    animation: blink 1s steps(1) infinite;
+    margin-left:2px;
+  }
+  @keyframes blink { 50%{opacity:0} }
+
+  .signature {
+    border-top: 1px dashed #222;
+    padding-top: 16px;
+    font-size: 10px;
+    line-height: 1.7;
+    color: var(--dim);
+    letter-spacing: .05em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+  }
+  .signature div { display: flex; justify-content: space-between; }
+  .signature span:first-child { color: #333; text-transform: uppercase; }
+  .signature span:last-child { color: #8a8a8a; }
+
+  /* watermark biner di pojok */
+  .watermark {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 9px;
+    line-height: 1.2;
+    color: rgba(255,255,255,.04);
+    pointer-events: none;
+    z-index: 5;
+    white-space: pre;
+    font-family: monospace;
+    letter-spacing: .1em;
+  }
+
 </style>
 </head>
 <body>
-<section id="landingPage">
-  <header class="site-header">
-    <span class="school-badge">MEDIA PEMBELAJARAN DIGITAL</span>
-    <h1>SMK BINTANG HARAPAN</h1>
-    <p>Program Keahlian Teknik Jaringan Komputer dan Telekomunikasi</p>
-  </header>
-  <main class="wrap">
-    <section class="hero">
-      <p class="pill">KELAS X • TKJ</p>
-      <h2>TKJ Smart Learning</h2>
-      <p>Belajar materi, berlatih soal, dan lihat hasil belajarmu dalam satu halaman.</p>
-      <p class="teacher">Guru Pengampu: <span id="namaGuru">MIRA FITRIA DEWI, A.Md</span></p>
-      <button class="primary" onclick="masukBelajar()">Mulai Belajar →</button>
-    </section>
-    <section class="panel">
-      <h2>Tujuan Pembelajaran</h2>
-      <p>Setelah mempelajari materi ini, peserta didik diharapkan mampu:</p>
-      <ul class="objectives">
-        <li>Menjelaskan proses bisnis di bidang TKJ.</li>
-        <li>Mengenali komponen dan fungsi perangkat komputer.</li>
-        <li>Memahami perkembangan jaringan komputer dan telekomunikasi.</li>
-        <li>Menjelaskan BIOS/UEFI serta proses booting.</li>
-        <li>Mengenali profesi dan peluang kewirausahaan bidang TKJ.</li>
-        <li>Menerapkan K3LH dan budaya kerja yang aman.</li>
-      </ul>
-    </section>
-    <section class="panel">
-      <h2>Enam Materi Pembelajaran</h2>
-      <div class="topic-grid" id="landingTopics"></div>
-    </section>
-    <section class="panel">
-      <h2>Petunjuk Penggunaan</h2>
-      <ol>
-        <li>Pilih salah satu materi yang ingin dipelajari.</li>
-        <li>Baca ringkasan materi sampai selesai.</li>
-        <li>Tekan tombol mulai kuis dan pilih satu jawaban pada setiap soal.</li>
-        <li>Periksa jawaban untuk melihat nilai, kunci, dan pembahasan.</li>
-      </ol>
-      <p class="note">Setiap materi berisi 10 soal. Nilai dihitung otomatis dari jawaban yang benar.</p>
-    </section>
-  </main>
-  <footer>Media Pembelajaran TKJ Kelas X • SMK Bintang Harapan</footer>
-</section>
 
-<section id="learningPage" class="hidden">
-  <header class="site-header">
-    <h1>📚 MATERI TKJ KELAS X</h1>
-    <p>Teknik Jaringan Komputer dan Telekomunikasi</p>
-    <p>Belajar Materi • Latihan Kuis • Evaluasi Nilai</p>
-  </header>
-  <main class="wrap">
-    <section class="panel" id="home">
-      <h2>Daftar Materi</h2>
-      <p>Pilih bab untuk membaca materi dan mengerjakan kuis.</p>
-      <div id="menuMateri"></div>
-      <button class="secondary" onclick="kembaliLanding()">← Kembali ke Halaman Depan</button>
-    </section>
-    <section class="panel hidden" id="materiSection">
-      <span class="pill" id="labelBab">MATERI</span>
-      <h2 id="judulMateri"></h2>
-      <div id="isiMateri"></div>
-      <button class="primary" onclick="mulaiQuiz()">📝 Mulai Kuis Materi Ini</button>
-      <button class="secondary" onclick="kembaliHome()">← Kembali ke Daftar Materi</button>
-    </section>
-    <section class="panel hidden" id="quizSection">
-      <h2 id="judulQuiz"></h2>
-      <p id="petunjukQuiz">Pilih satu jawaban yang paling tepat pada setiap soal.</p>
-      <form id="quizForm">
-        <div id="daftarSoal"></div>
-        <button class="primary" type="submit">Periksa Jawaban dan Lihat Nilai</button>
-      </form>
-      <button class="secondary" onclick="kembaliMateri()">← Kembali ke Materi</button>
-    </section>
-    <section class="panel hidden" id="hasilSection">
-      <h2>📊 Hasil Kuis</h2>
-      <p class="score" id="nilaiAkhir">0</p>
-      <p id="keteranganNilai" style="text-align:center"></p>
-      <p id="ringkasanNilai" style="text-align:center"></p>
-      <h3>Pembahasan dan Kunci Jawaban</h3>
-      <div id="pembahasan"></div>
-      <button class="primary" onclick="ulangQuiz()">🔄 Ulangi Kuis</button>
-      <button class="secondary" onclick="kembaliMateri()">← Kembali ke Materi</button>
-      <button class="secondary" onclick="kembaliHome()">Kembali ke Daftar Materi</button>
-    </section>
-  </main>
-  <footer>Media Pembelajaran TKJ Kelas X • SMK Bintang Harapan</footer>
-</section>
+  <div class="watermark">
+    01110010 01100001 01111010 01100101 01101110
+    R A Z E N
+  </div>
+
+  <div class="box">
+    <h1>pwned<em>.</em></h1>
+    <div class="name">razen</div>
+
+    <div class="lines">
+      <div>host <span id="h">—</span></div>
+      <div>date <span id="d">—</span></div>
+    </div>
+
+    <div class="term" id="term"></div>
+
+    <div class="signature">
+      <div><span>vector</span> <span id="v">—</span></div>
+      <div><span>session</span> <span id="s">—</span></div>
+      <div><span>handler</span> <span>razen</span></div>
+      <div><span>exit</span> <span>clean</span></div>
+    </div>
+
+  </div>
 
 <script>
-/* Ganti teks NAMA LENGKAP GURU di atas dengan nama yang ingin ditampilkan. */
-const materiTKJ = [
-{
-judul:"1. Proses Bisnis Teknik Jaringan dan Komunikasi",
-materi:`<h3>A. Pengertian Proses Bisnis</h3>
-<p>Proses bisnis adalah rangkaian kegiatan yang dilakukan secara teratur untuk menghasilkan barang atau jasa bagi pelanggan. Dalam bidang TKJ, proses bisnis dapat berupa pemasangan jaringan, penjualan perangkat, layanan internet, serta pemeliharaan komputer dan jaringan.</p>
-<h3>B. Alur Proses Bisnis</h3><p>Alur dasar proses bisnis adalah <b>Input → Proses → Output</b>.</p>
-<ul><li><b>Input:</b> modal, alat, bahan, informasi, dan tenaga kerja.</li><li><b>Proses:</b> kegiatan mengolah input menjadi barang atau jasa.</li><li><b>Output:</b> hasil akhir yang diterima pelanggan.</li></ul>
-<h3>C. Contoh Usaha TKJ</h3><ul><li>ISP (Internet Service Provider), penyedia akses internet.</li><li>Jasa instalasi dan konfigurasi jaringan.</li><li>Penjualan komputer dan perangkat jaringan.</li><li>Perawatan, perbaikan, dan konsultasi jaringan.</li></ul>
-<h3>D. Tahapan Layanan</h3><p>Umumnya dimulai dari mengenali kebutuhan pelanggan, survei, membuat penawaran, menyepakati pekerjaan, melaksanakan instalasi, menguji hasil, lalu menyerahkan pekerjaan dan memberikan dukungan.</p>
-<h3>E. Dokumen Bisnis</h3><p>Surat penawaran menjelaskan layanan dan harga; surat pesanan mencatat permintaan; faktur merinci tagihan; kuitansi menjadi bukti penerimaan pembayaran; laporan pekerjaan mencatat hasil layanan.</p>
-<h3>F. Mutu dan Kepuasan Pelanggan</h3><p>Pekerjaan yang baik dilakukan sesuai kebutuhan, waktu, anggaran, standar keselamatan, dan dokumentasi. Komunikasi yang jelas membantu membangun kepercayaan pelanggan.</p>`,
-soal:[
-["Apa yang dimaksud dengan proses bisnis?",["Rangkaian kegiatan untuk menghasilkan barang atau jasa","Kegiatan bermain komputer","Kegiatan tanpa tujuan","Kegiatan menghias ruangan"],0,"Proses bisnis adalah rangkaian kegiatan untuk menghasilkan barang atau jasa."],
-["Urutan dasar proses bisnis adalah...",["Output → Input → Proses","Input → Proses → Output","Proses → Output → Input","Output → Proses → Input"],1,"Input diolah melalui proses untuk menghasilkan output."],
-["Usaha yang menyediakan layanan akses internet disebut...",["LAN","ISP","CPU","RAM"],1,"ISP adalah Internet Service Provider."],
-["Dokumen yang menjadi bukti penerimaan pembayaran adalah...",["Kuitansi","Surat lamaran","Jadwal kerja","Surat izin"],0,"Kuitansi menjadi bukti penerimaan uang."],
-["Contoh usaha di bidang TKJ adalah...",["Jasa instalasi jaringan","Jasa menjahit","Jasa tata boga","Jasa pertanian"],0,"Instalasi jaringan merupakan layanan bidang TKJ."],
-["Kegiatan awal sebelum memasang jaringan di tempat pelanggan adalah...",["Langsung membongkar perangkat","Survei kebutuhan dan lokasi","Menghapus semua data","Mencetak kuitansi dahulu"],1,"Survei membantu mengetahui kebutuhan, kondisi lokasi, dan rancangan jaringan."],
-["Dokumen yang merinci barang/jasa dan jumlah tagihan adalah...",["Faktur","Kartu pelajar","Daftar hadir","Surat izin"],0,"Faktur merinci transaksi dan tagihan yang harus dibayar."],
-["Mengapa hasil instalasi jaringan perlu diuji?",["Agar pekerjaan lebih lama","Untuk memastikan jaringan berfungsi sesuai kebutuhan","Supaya kabel bertambah","Agar tidak perlu dokumentasi"],1,"Pengujian memastikan koneksi dan konfigurasi bekerja sesuai kebutuhan."],
-["Sikap yang baik ketika melayani pelanggan adalah...",["Mengabaikan keluhan","Menjelaskan pekerjaan dan biaya dengan jujur","Menjanjikan hal yang tidak bisa dipenuhi","Menyembunyikan masalah"],1,"Komunikasi jujur dan jelas menjaga kepercayaan pelanggan."],
-["Setelah pekerjaan selesai, teknisi sebaiknya...",["Meninggalkan lokasi tanpa kabar","Menguji, mendokumentasikan, dan menjelaskan hasil pekerjaan","Membuang semua perangkat","Tidak memberi informasi kepada pelanggan"],1,"Pengujian, dokumentasi, dan penjelasan merupakan bagian dari layanan profesional."]
-]},
-{
-judul:"2. Komponen Komputer",
-materi:`<h3>A. Pengertian Komputer</h3><p>Komputer adalah sistem elektronik yang menerima data, mengolahnya berdasarkan instruksi, menyimpan data, dan menghasilkan informasi.</p>
-<h3>B. Perangkat Keras (Hardware)</h3><ul><li><b>CPU/prosesor:</b> menjalankan instruksi dan mengolah data.</li><li><b>Motherboard:</b> papan utama penghubung komponen.</li><li><b>RAM:</b> penyimpanan sementara saat program berjalan.</li><li><b>SSD/HDD:</b> penyimpanan data jangka panjang.</li><li><b>PSU:</b> memasok daya listrik ke komponen.</li><li><b>GPU:</b> memproses tampilan grafis.</li><li><b>NIC/LAN card:</b> menghubungkan komputer ke jaringan.</li></ul>
-<h3>C. Perangkat Input dan Output</h3><p>Keyboard, mouse, mikrofon, dan pemindai merupakan perangkat input. Monitor, printer, dan speaker merupakan perangkat output. Layar sentuh dapat berfungsi sebagai input sekaligus output.</p>
-<h3>D. Perangkat Lunak (Software)</h3><p>Sistem operasi seperti Windows dan Linux mengelola perangkat keras dan aplikasi. Aplikasi digunakan untuk tugas tertentu. Driver membantu sistem operasi berkomunikasi dengan perangkat keras.</p>
-<h3>E. Cara Kerja Komputer</h3><p>Secara sederhana: input → pemrosesan → output, dengan penyimpanan untuk menyimpan data dan hasil. Hardware, software, dan pengguna bekerja bersama sebagai satu sistem.</p>
-<h3>F. Perawatan Dasar</h3><p>Jaga ventilasi, bersihkan debu dengan cara aman, hindari cairan, gunakan listrik yang sesuai, dan matikan komputer sebelum memasang atau melepas komponen internal.</p>`,
-soal:[
-["Komponen yang menjalankan instruksi dan mengolah data adalah...",["Monitor","CPU/prosesor","Keyboard","Speaker"],1,"CPU menjalankan instruksi dan memproses data."],
-["RAM berfungsi sebagai...",["Penyimpanan sementara saat program berjalan","Pencetak dokumen","Pemasok listrik","Penghubung monitor saja"],0,"RAM menyimpan data sementara yang sedang digunakan."],
-["Komponen utama tempat berbagai perangkat terhubung adalah...",["Motherboard","Mouse","Printer","Headset"],0,"Motherboard menjadi papan utama penghubung komponen."],
-["Perangkat yang menyimpan data dalam jangka panjang adalah...",["RAM","Cache saja","SSD/HDD","Register CPU"],2,"SSD dan HDD menyimpan data meskipun komputer dimatikan."],
-["Perangkat berikut yang termasuk input adalah...",["Monitor","Speaker","Keyboard","Proyektor"],2,"Keyboard digunakan untuk memasukkan teks dan perintah."],
-["Fungsi PSU pada komputer adalah...",["Menyimpan file","Memasok daya listrik ke komponen","Menampilkan gambar","Mengolah suara saja"],1,"PSU memasok daya listrik yang dibutuhkan komponen komputer."],
-["Contoh sistem operasi adalah...",["Windows","Keyboard","HDMI","RAM"],0,"Windows adalah sistem operasi; keyboard, HDMI, dan RAM bukan sistem operasi."],
-["Perangkat yang menghubungkan komputer ke jaringan kabel disebut...",["NIC/LAN card","CPU cooler","Printer","Scanner"],0,"NIC atau LAN card menyediakan antarmuka jaringan."],
-["Perangkat layar sentuh dapat berfungsi sebagai...",["Input saja dalam semua keadaan","Output saja dalam semua keadaan","Input dan output","Penyimpanan utama"],2,"Layar menampilkan informasi sekaligus menerima sentuhan pengguna."],
-["Sebelum memasang atau melepas komponen internal komputer, tindakan aman adalah...",["Membiarkan komputer menyala","Mematikan komputer dan memutus sumber listrik","Menyiram casing","Menyentuh pin dengan tangan basah"],1,"Memutus sumber listrik membantu mengurangi risiko sengatan dan kerusakan komponen."]
-]},
-{
-judul:"3. Perkembangan Teknologi Jaringan Komputer dan Telekomunikasi",
-materi:`<h3>A. Pengertian Jaringan Komputer</h3><p>Jaringan komputer menghubungkan dua atau lebih perangkat agar dapat bertukar data dan berbagi sumber daya, seperti file, printer, dan koneksi internet.</p>
-<h3>B. Jenis Jaringan Berdasarkan Jangkauan</h3><ul><li><b>PAN:</b> jangkauan pribadi, misalnya koneksi Bluetooth.</li><li><b>LAN:</b> area terbatas, seperti rumah, lab, atau kantor.</li><li><b>MAN:</b> cakupan wilayah kota atau metropolitan.</li><li><b>WAN:</b> wilayah luas; internet merupakan contoh jaringan global yang menggunakan banyak jaringan.</li></ul>
-<h3>C. Perangkat Jaringan</h3><p>Switch menghubungkan perangkat dalam LAN; router meneruskan paket antarjaringan; access point menyediakan akses Wi-Fi; modem menghubungkan jaringan ke layanan akses tertentu; firewall membantu mengatur lalu lintas berdasarkan aturan keamanan.</p>
-<h3>D. Media Transmisi</h3><p>Kabel twisted pair banyak dipakai pada LAN; serat optik membawa data menggunakan cahaya dan mendukung kapasitas tinggi; gelombang radio digunakan Wi-Fi dan jaringan seluler.</p>
-<h3>E. Perkembangan Telekomunikasi</h3><p>Teknologi berkembang dari telepon kabel dan jaringan seluler generasi awal menuju 3G, 4G/LTE, dan 5G. Generasi baru umumnya meningkatkan kapasitas, kecepatan, dan kemampuan mendukung banyak perangkat, bergantung pada kondisi jaringan dan layanan.</p>
-<h3>F. Tren dan Keamanan</h3><p>Cloud computing, Internet of Things (IoT), virtualisasi, dan otomatisasi makin banyak digunakan. Keamanan dasar meliputi kata sandi kuat, pembaruan sistem, enkripsi Wi-Fi, pencadangan data, dan pembatasan akses.</p>`,
-soal:[
-["Tujuan utama jaringan komputer adalah...",["Menghubungkan perangkat untuk bertukar data dan berbagi sumber daya","Membuat komputer tidak memerlukan listrik","Menghapus semua file","Menggantikan semua perangkat keras"],0,"Jaringan memungkinkan komunikasi dan berbagi sumber daya."],
-["Jaringan yang biasanya digunakan di laboratorium sekolah adalah...",["LAN","PAN saja","WAN pribadi","Tidak ada jaringan"],0,"LAN cocok untuk area terbatas seperti laboratorium."],
-["Jaringan dengan jangkauan wilayah sangat luas disebut...",["PAN","LAN","WAN","USB"],2,"WAN menghubungkan jaringan pada area geografis yang luas."],
-["Perangkat yang meneruskan paket antarjaringan adalah...",["Router","Keyboard","Monitor","Speaker"],0,"Router meneruskan paket berdasarkan informasi rute."],
-["Perangkat yang menghubungkan banyak perangkat dalam LAN adalah...",["Switch","Scanner","Proyektor","Mikrofon"],0,"Switch menghubungkan perangkat dalam jaringan lokal."],
-["Media yang mengirimkan data menggunakan cahaya adalah...",["Kabel serat optik","Kabel listrik biasa saja","Bluetooth tanpa radio","Kertas"],0,"Serat optik membawa sinyal cahaya melalui serat."],
-["Wi-Fi menggunakan media transmisi berupa...",["Gelombang radio","Tinta","Cahaya dari lampu senter saja","Kertas"],0,"Wi-Fi mentransmisikan data menggunakan gelombang radio."],
-["Teknologi yang menghubungkan benda/perangkat ke internet untuk bertukar data disebut...",["IoT","POST","BIOS","GUI"],0,"IoT adalah Internet of Things."],
-["Salah satu praktik keamanan jaringan yang baik adalah...",["Menggunakan kata sandi kuat dan memperbarui sistem","Membagikan kata sandi ke semua orang","Mematikan semua pembaruan selamanya","Menggunakan kata sandi yang sama dan mudah ditebak"],0,"Kata sandi kuat dan pembaruan membantu mengurangi risiko keamanan."],
-["Secara umum, jaringan seluler generasi baru dikembangkan untuk meningkatkan...",["Kapasitas dan kemampuan layanan komunikasi","Jumlah kabel printer","Ukuran keyboard","Kecerahan monitor saja"],0,"Generasi baru dirancang untuk meningkatkan kapasitas, kinerja, dan layanan, sesuai kondisi jaringan."]
-]},
-{
-judul:"4. BIOS/UEFI dan Proses Booting",
-materi:`<h3>A. Pengertian BIOS dan UEFI</h3><p>BIOS (Basic Input/Output System) adalah firmware yang menjalankan inisialisasi awal perangkat keras dan memulai proses booting. Banyak komputer modern menggunakan UEFI, yaitu firmware yang lebih baru dengan kemampuan dan antarmuka yang lebih modern.</p>
-<h3>B. Fungsi Firmware</h3><ul><li>Melakukan inisialisasi dan pemeriksaan perangkat keras.</li><li>Menyediakan pengaturan perangkat dasar.</li><li>Menentukan urutan perangkat boot.</li><li>Memulai pemuat sistem operasi.</li></ul>
-<h3>C. POST</h3><p>POST (Power-On Self-Test) adalah pemeriksaan awal ketika komputer dinyalakan. Jika ada masalah, komputer dapat menampilkan pesan kesalahan atau kode bunyi, bergantung pada perangkat.</p>
-<h3>D. Urutan Booting</h3><p>Secara umum: komputer dinyalakan → firmware menginisialisasi perangkat → memilih perangkat boot → menjalankan bootloader → sistem operasi dimuat → layar masuk atau desktop tampil. Detailnya bergantung pada sistem dan pengaturan.</p>
-<h3>E. Masuk ke Pengaturan BIOS/UEFI</h3><p>Tombol yang digunakan berbeda menurut produsen, misalnya Del, F2, F10, atau Esc. Petunjuk biasanya muncul saat awal komputer menyala atau tersedia dalam panduan perangkat.</p>
-<h3>F. Hal yang Perlu Diperhatikan</h3><p>Ubah pengaturan hanya jika memahami fungsinya. Pengaturan boot, Secure Boot, atau mode penyimpanan yang salah dapat menyebabkan sistem gagal masuk. Catat pengaturan awal sebelum mengubahnya.</p>`,
-soal:[
-["BIOS merupakan singkatan dari...",["Basic Input/Output System","Binary Internet Operating Service","Basic Internal Online Storage","Boot Input Office Setup"],0,"BIOS berarti Basic Input/Output System."],
-["BIOS/UEFI termasuk jenis...",["Firmware","Perangkat input","Aplikasi pengolah kata","Kabel jaringan"],0,"BIOS dan UEFI adalah firmware yang berjalan sebelum sistem operasi."],
-["POST dilakukan untuk...",["Memeriksa perangkat keras saat awal komputer menyala","Mencetak dokumen","Mengirim email","Menghapus sistem operasi"],0,"POST melakukan pemeriksaan awal perangkat keras."],
-["Urutan yang paling tepat secara umum adalah...",["Sistem operasi → POST → dinyalakan","Dinyalakan → inisialisasi/POST → perangkat boot → sistem operasi","Desktop → dimatikan → POST","Aplikasi → kabel → BIOS"],1,"Komputer dinyalakan, firmware memeriksa dan menginisialisasi perangkat, lalu proses pemuatan OS dimulai."],
-["Salah satu tombol yang sering digunakan untuk masuk BIOS/UEFI adalah...",["F2","Ctrl+P selalu","Alt+Tab","Caps Lock"],0,"F2 adalah salah satu tombol umum, tetapi berbeda menurut produsen."],
-["Pengaturan boot order digunakan untuk...",["Menentukan urutan perangkat yang dicoba untuk boot","Mengatur warna casing","Menambah RAM secara fisik","Mengganti keyboard"],0,"Boot order menentukan urutan perangkat boot."],
-["Pada banyak komputer modern, firmware yang lebih baru dibanding BIOS tradisional adalah...",["UEFI","VGA","HTTP","SMTP"],0,"UEFI merupakan firmware modern yang banyak menggantikan BIOS tradisional."],
-["Jika komputer menampilkan pesan kesalahan POST, langkah awal yang tepat adalah...",["Mencatat pesan dan memeriksa perangkat sesuai panduan","Memukul komputer","Menghapus semua file","Mencabut kabel secara acak saat menyala"],0,"Pesan kesalahan membantu mengarahkan pemeriksaan yang aman."],
-["Bootloader berperan untuk...",["Memulai pemuatan sistem operasi","Menghasilkan daya listrik","Membersihkan monitor","Mencetak dokumen"],0,"Bootloader membantu memulai pemuatan sistem operasi."],
-["Sebelum mengubah pengaturan firmware, sebaiknya...",["Mengubah semua pilihan sekaligus","Memahami fungsi dan mencatat pengaturan awal","Mematikan monitor saja","Menghapus semua cadangan"],1,"Mencatat pengaturan awal memudahkan pemulihan jika terjadi masalah."]
-]},
-{
-judul:"5. Profesi dan Kewirausahaan Bidang TKJ",
-materi:`<h3>A. Pilihan Profesi</h3><p>Lulusan TKJ dapat mengembangkan karier sebagai teknisi komputer, teknisi jaringan, administrator jaringan, teknisi dukungan TI (help desk), teknisi ISP, teknisi pusat data, atau wirausaha layanan komputer dan jaringan.</p>
-<h3>B. Kompetensi yang Dibutuhkan</h3><ul><li>Pengetahuan perangkat komputer dan jaringan.</li><li>Keterampilan konfigurasi, instalasi, pemeliharaan, dan pemecahan masalah.</li><li>Komunikasi, kerja sama, disiplin, dan dokumentasi.</li><li>Kesadaran keamanan data dan keselamatan kerja.</li></ul>
-<h3>C. Kewirausahaan</h3><p>Kewirausahaan adalah proses melihat peluang, merencanakan usaha, mengelola sumber daya, dan menawarkan nilai kepada pelanggan dengan memperhitungkan risiko.</p>
-<h3>D. Peluang Usaha TKJ</h3><p>Contohnya servis komputer, pemasangan Wi-Fi, instalasi LAN, konfigurasi router, perawatan jaringan, penjualan aksesori, dan konsultasi TI. Usaha harus memperhatikan kompetensi, izin yang diperlukan, dan keselamatan.</p>
-<h3>E. Rencana Usaha Sederhana</h3><ol><li>Tentukan kebutuhan pelanggan dan target pasar.</li><li>Tentukan layanan, alat, bahan, dan biaya.</li><li>Buat harga yang wajar dan perhitungan keuntungan.</li><li>Promosikan layanan secara jujur.</li><li>Catat transaksi dan evaluasi kepuasan pelanggan.</li></ol>
-<h3>F. Etika Profesional</h3><p>Jaga kerahasiaan data pelanggan, minta izin sebelum mengakses data, jelaskan biaya dan risiko, gunakan perangkat lunak legal, serta selesaikan pekerjaan sesuai kesepakatan.</p>`,
-soal:[
-["Orang yang mengelola dan memelihara jaringan komputer dapat disebut...",["Administrator jaringan","Koki","Penjahit","Kasir toko pakaian"],0,"Administrator jaringan mengelola dan memelihara jaringan."],
-["Pekerjaan yang membantu pengguna menyelesaikan masalah TI disebut...",["Help desk/support TI","Desainer busana saja","Petani","Pengemudi"],0,"Help desk memberikan bantuan awal dan solusi masalah TI."],
-["Contoh peluang usaha di bidang TKJ adalah...",["Jasa instalasi jaringan","Jasa tata rias saja","Jasa penanaman padi saja","Jasa dekorasi kue"],0,"Instalasi jaringan merupakan layanan yang relevan dengan kompetensi TKJ."],
-["Langkah awal menyusun rencana usaha yang baik adalah...",["Mengenali kebutuhan pelanggan dan target pasar","Membeli alat sebanyak mungkin tanpa rencana","Menetapkan harga tanpa menghitung biaya","Mengabaikan pesaing dan pelanggan"],0,"Memahami kebutuhan pelanggan membantu menentukan layanan yang dibutuhkan."],
-["Mengapa biaya usaha perlu dicatat?",["Untuk mengetahui pengeluaran dan menghitung keuntungan","Agar transaksi tidak diketahui","Supaya harga selalu rugi","Agar tidak perlu merencanakan usaha"],0,"Catatan biaya membantu menghitung modal, harga, dan keuntungan."],
-["Sikap profesional saat menangani data pelanggan adalah...",["Menjaga kerahasiaan dan meminta izin akses","Membagikan data ke media sosial","Membuka data tanpa alasan","Menyalin data untuk kepentingan pribadi"],0,"Data pelanggan harus dijaga dan diakses sesuai izin serta kebutuhan."],
-["Keterampilan yang penting selain kemampuan teknis adalah...",["Komunikasi dan kerja sama","Mengabaikan instruksi","Menolak dokumentasi","Menyalahkan pelanggan"],0,"Komunikasi dan kerja sama mendukung layanan yang baik."],
-["Promosi usaha yang baik harus...",["Jujur tentang layanan dan kemampuan","Menjanjikan hasil yang mustahil","Menyembunyikan biaya","Menggunakan informasi palsu"],0,"Promosi yang jujur membangun kepercayaan pelanggan."],
-["Sebelum memberikan harga layanan, pengusaha sebaiknya...",["Menghitung biaya, waktu, dan kebutuhan pekerjaan","Menebak tanpa memeriksa pekerjaan","Mengabaikan biaya bahan","Meniru harga tanpa mempertimbangkan biaya"],0,"Harga perlu memperhitungkan biaya dan nilai layanan."],
-["Jika menemukan data pribadi pelanggan saat memperbaiki komputer, teknisi harus...",["Menjaga privasi dan tidak mengakses data yang tidak diperlukan","Menyalin data tersebut","Mengirimkannya kepada teman","Mengunggahnya ke internet"],0,"Teknisi wajib menghormati privasi dan hanya mengakses data yang diperlukan."]
-]},
-{
-judul:"6. K3LH dan Budaya Kerja",
-materi:`<h3>A. Pengertian K3LH</h3><p>K3LH adalah Keselamatan dan Kesehatan Kerja serta Lingkungan Hidup. Tujuannya melindungi pekerja, mencegah kecelakaan dan penyakit akibat kerja, serta mengurangi dampak buruk terhadap lingkungan.</p>
-<h3>B. Risiko di Laboratorium TKJ</h3><p>Risiko dapat berupa sengatan listrik, tersandung kabel, luka akibat alat, panas berlebih, debu, posisi kerja yang buruk, serta kerusakan komponen akibat listrik statis.</p>
-<h3>C. Penerapan Keselamatan</h3><ul><li>Periksa kabel, stopkontak, dan alat sebelum digunakan.</li><li>Jaga tangan dan area kerja tetap kering saat menangani listrik.</li><li>Matikan dan cabut sumber listrik sebelum membuka perangkat, jika aman dilakukan.</li><li>Jangan menumpuk beban berlebih pada stopkontak.</li><li>Rapikan kabel agar tidak membuat orang tersandung.</li><li>Gunakan alat pelindung sesuai jenis pekerjaan.</li><li>Laporkan kerusakan dan jangan menggunakan alat yang tidak aman.</li></ul>
-<h3>D. Pencegahan Listrik Statis</h3><p>Komponen elektronik sensitif terhadap electrostatic discharge (ESD). Tangani komponen pada bagian tepinya dan gunakan gelang antistatis atau langkah pembumian yang sesuai bila tersedia.</p>
-<h3>E. Lingkungan Kerja</h3><p>Jaga ventilasi dan kebersihan, pisahkan limbah elektronik dari sampah biasa, gunakan kembali atau daur ulang komponen melalui saluran yang sesuai, dan hemat energi.</p>
-<h3>F. Budaya Kerja</h3><p>Budaya kerja yang baik mencakup disiplin, tanggung jawab, ketelitian, komunikasi, kerja sama, menjaga alat, mengikuti SOP, serta membersihkan dan mengembalikan alat setelah digunakan.</p>`,
-soal:[
-["K3LH merupakan singkatan dari...",["Keselamatan dan Kesehatan Kerja serta Lingkungan Hidup","Komputer dan Kabel Lokal Harian","Kegiatan Kerja Luar Hari","Keamanan Komunikasi Layanan Hotel"],0,"K3LH mencakup keselamatan, kesehatan kerja, dan lingkungan hidup."],
-["Sebelum membuka casing komputer, tindakan yang aman adalah...",["Mematikan komputer dan memutus sumber listrik","Membiarkan komputer menyala","Menyiram casing dengan air","Menyentuh komponen dengan tangan basah"],0,"Memutus sumber listrik membantu mengurangi risiko sengatan dan kerusakan."],
-["Kabel yang berserakan di lantai dapat menyebabkan...",["Orang tersandung","Internet menjadi lebih cepat","Komputer bertambah RAM","Listrik selalu stabil"],0,"Kabel berserakan merupakan bahaya tersandung."],
-["Saat bekerja dengan perangkat listrik, tangan sebaiknya...",["Kering","Basah","Dilapisi cairan","Selalu menyentuh kabel terbuka"],0,"Tangan dan area kerja harus kering untuk mengurangi risiko sengatan."],
-["ESD dapat merusak...",["Komponen elektronik yang sensitif","Meja kayu saja","Buku catatan saja","Kursi plastik saja"],0,"Pelepasan listrik statis dapat merusak komponen elektronik."],
-["Jika menemukan kabel listrik terkelupas, tindakan tepat adalah...",["Jangan digunakan dan laporkan untuk diperbaiki dengan aman","Tetap gunakan sambil dipegang","Menutupinya dengan tangan","Menyiramnya dengan air"],0,"Kabel rusak harus dijauhkan dari penggunaan dan dilaporkan."],
-["Limbah elektronik sebaiknya...",["Dipisahkan dan disalurkan ke pengelolaan yang sesuai","Dibakar sembarangan","Dibuang ke sungai","Dicampur tanpa pertimbangan dengan semua sampah"],0,"Limbah elektronik perlu dikelola secara khusus agar mengurangi dampak lingkungan."],
-["Contoh budaya kerja yang baik adalah...",["Disiplin, teliti, dan mengikuti SOP","Mengabaikan prosedur","Meninggalkan alat berantakan","Menyembunyikan kerusakan"],0,"Disiplin dan mengikuti SOP mendukung keselamatan serta kualitas pekerjaan."],
-["Mengapa ventilasi laboratorium penting?",["Membantu menjaga sirkulasi udara dan mengurangi penumpukan panas","Agar kabel berserakan","Agar perangkat cepat berdebu","Agar lampu tidak perlu digunakan"],0,"Ventilasi yang baik membantu sirkulasi udara dan pengendalian panas."],
-["Setelah selesai menggunakan alat laboratorium, siswa sebaiknya...",["Mematikan atau mengembalikan alat sesuai prosedur dan merapikan area kerja","Meninggalkan alat menyala","Menyimpan alat dalam keadaan basah","Meninggalkan sampah di meja"],0,"Mengembalikan alat dan merapikan area kerja merupakan bagian dari budaya kerja aman."]
-]}
-];
+  var now = new Date();
+  var p = function(n){return n<10?"0"+n:n};
+  document.getElementById("h").textContent = location.hostname || "—";
+  document.getElementById("d").textContent =
+    now.getFullYear() + "-" + p(now.getMonth()+1) + "-" + p(now.getDate())
+    + " " + p(now.getHours()) + ":" + p(now.getMinutes());
 
-let babAktif = 0;
-let hasilTerakhir = null;
+  var rand = function(len) {
+    var c = "0123456789abcdef";
+    var r = "";
+    for (var i = 0; i < len; i++) r += c[Math.floor(Math.random()*16)];
+    return r;
+  };
+  document.getElementById("v").textContent = "0x" + rand(6);
+  document.getElementById("s").textContent = rand(8);
 
-function buatTombolMateri(container, tampilkanLanding) {
-  container.innerHTML = "";
-  materiTKJ.forEach((bab, index) => {
-    const tombol = document.createElement("button");
-    tombol.className = tampilkanLanding ? "topic-card" : "menu-btn";
-    if (tampilkanLanding) {
-      tombol.innerHTML = `<h3>${bab.judul}</h3><p>Baca ringkasan dan kerjakan 10 soal latihan.</p><span class="pill">Buka materi →</span>`;
-      tombol.onclick = () => bukaMateri(index);
-    } else {
-      tombol.textContent = bab.judul;
-      tombol.onclick = () => bukaMateri(index);
+  var term = document.getElementById("term");
+  var host = location.hostname || "target";
+  var lines = [
+    { t: "razen@" + host + ":~# ", c: "cmd", typed: "whoami" },
+    { t: "razen", c: "ok" },
+    { t: "razen@" + host + ":~# ", c: "cmd", typed: "ls /var/www/html" },
+    { t: "index.html  config.php  database.sql  .env", c: "ok" },
+    { t: "razen@" + host + ":~# ", c: "cmd", typed: "cat flag.txt" },
+    { t: "// nothing to prove. just passing through.", c: "ok" }
+  ];
+
+  var li = 0, ci = 0;
+  var promptStr = "";
+  var currentLine = "";
+
+  function render() {
+    term.innerHTML = promptStr + currentLine + '<span class="cursor"></span>';
+  }
+
+  function type() {
+    if (li >= lines.length) {
+      term.innerHTML = '<span class="prompt">razen@'+host+':~# </span><span class="cursor"></span>';
+      return;
     }
-    container.appendChild(tombol);
-  });
-}
-function tampilkanMenu() {
-  buatTombolMateri(document.getElementById("menuMateri"), false);
-  buatTombolMateri(document.getElementById("landingTopics"), true);
-}
-function masukBelajar() {
-  document.getElementById("landingPage").classList.add("hidden");
-  document.getElementById("learningPage").classList.remove("hidden");
-  kembaliHome();
-}
-function kembaliLanding() {
-  document.getElementById("learningPage").classList.add("hidden");
-  document.getElementById("landingPage").classList.remove("hidden");
-  window.scrollTo(0, 0);
-}
-function sembunyikanSemuaBagian() {
-  ["home","materiSection","quizSection","hasilSection"].forEach(id =>
-    document.getElementById(id).classList.add("hidden")
-  );
-}
-function bukaMateri(index) {
-  document.getElementById("landingPage").classList.add("hidden");
-  document.getElementById("learningPage").classList.remove("hidden");
-  babAktif = index;
-  hasilTerakhir = null;
-  sembunyikanSemuaBagian();
-  document.getElementById("materiSection").classList.remove("hidden");
-  document.getElementById("labelBab").textContent = "MATERI " + (index + 1) + " DARI " + materiTKJ.length;
-  document.getElementById("judulMateri").textContent = materiTKJ[index].judul;
-  document.getElementById("isiMateri").innerHTML = materiTKJ[index].materi;
-  window.scrollTo(0, 0);
-}
-function mulaiQuiz() {
-  const bab = materiTKJ[babAktif];
-  hasilTerakhir = null;
-  sembunyikanSemuaBagian();
-  document.getElementById("quizSection").classList.remove("hidden");
-  document.getElementById("judulQuiz").textContent = "Kuis: " + bab.judul;
-  document.getElementById("petunjukQuiz").textContent = "Pilih satu jawaban yang paling tepat. Total " + bab.soal.length + " soal.";
-  const daftar = document.getElementById("daftarSoal");
-  daftar.innerHTML = "";
-  bab.soal.forEach((soal, index) => {
-    const fieldset = document.createElement("fieldset");
-    fieldset.className = "question";
-    fieldset.style.border = "0";
-    fieldset.style.paddingLeft = "0";
-    fieldset.style.paddingRight = "0";
-    const legend = document.createElement("legend");
-    legend.textContent = (index + 1) + ". " + soal[0];
-    fieldset.appendChild(legend);
-    soal[1].forEach((pilihan, pilihanIndex) => {
-      const label = document.createElement("label");
-      label.className = "option";
-      const radio = document.createElement("input");
-      radio.type = "radio";
-      radio.name = "soal" + index;
-      radio.value = pilihanIndex;
-      radio.required = true;
-      const teks = document.createElement("span");
-      teks.textContent = String.fromCharCode(65 + pilihanIndex) + ". " + pilihan;
-      label.appendChild(radio);
-      label.appendChild(teks);
-      fieldset.appendChild(label);
-    });
-    daftar.appendChild(fieldset);
-  });
-  window.scrollTo(0, 0);
-}
-document.getElementById("quizForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  const bab = materiTKJ[babAktif];
-  let benar = 0;
-  const jawabanSiswa = [];
-  bab.soal.forEach((soal, index) => {
-    const pilihan = document.querySelector('input[name="soal' + index + '"]:checked');
-    const jawaban = pilihan ? Number(pilihan.value) : -1;
-    jawabanSiswa.push(jawaban);
-    if (jawaban === soal[2]) benar++;
-  });
-  const total = bab.soal.length;
-  hasilTerakhir = {benar, total, nilai: Math.round((benar / total) * 100), jawaban: jawabanSiswa};
-  tampilkanHasil();
-});
-function tampilkanHasil() {
-  const bab = materiTKJ[babAktif];
-  const hasil = hasilTerakhir;
-  sembunyikanSemuaBagian();
-  document.getElementById("hasilSection").classList.remove("hidden");
-  document.getElementById("nilaiAkhir").textContent = hasil.nilai;
-  let keterangan = "";
-  if (hasil.nilai >= 90) keterangan = "Sangat Baik! 🌟";
-  else if (hasil.nilai >= 80) keterangan = "Baik! Terus pertahankan.";
-  else if (hasil.nilai >= 70) keterangan = "Cukup baik, tingkatkan lagi.";
-  else keterangan = "Ayo pelajari kembali materinya!";
-  document.getElementById("keteranganNilai").textContent = keterangan;
-  document.getElementById("ringkasanNilai").textContent = "Jawaban benar: " + hasil.benar + " dari " + hasil.total + " soal. Nilai: " + hasil.nilai + "/100.";
-  const pembahasan = document.getElementById("pembahasan");
-  pembahasan.innerHTML = "";
-  bab.soal.forEach((soal, index) => {
-    const jawaban = hasil.jawaban[index];
-    const benar = jawaban === soal[2];
-    const kotak = document.createElement("div");
-    kotak.className = "feedback " + (benar ? "correct" : "wrong");
-    const judul = document.createElement("strong");
-    judul.textContent = (index + 1) + ". " + soal[0];
-    kotak.appendChild(judul);
-    kotak.appendChild(document.createElement("br"));
-    const jawabanText = jawaban === -1 ? "Jawabanmu: Tidak dijawab." : "Jawabanmu: " + String.fromCharCode(65 + jawaban) + ". " + soal[1][jawaban];
-    const barisJawaban = document.createElement("span");
-    barisJawaban.textContent = jawabanText;
-    kotak.appendChild(barisJawaban);
-    kotak.appendChild(document.createElement("br"));
-    const kunci = document.createElement("span");
-    kunci.textContent = "Kunci: " + String.fromCharCode(65 + soal[2]) + ". " + soal[1][soal[2]];
-    kotak.appendChild(kunci);
-    kotak.appendChild(document.createElement("br"));
-    const penjelasan = document.createElement("span");
-    penjelasan.textContent = "Pembahasan: " + soal[3];
-    kotak.appendChild(penjelasan);
-    pembahasan.appendChild(kotak);
-  });
-  window.scrollTo(0, 0);
-}
-function ulangQuiz() { mulaiQuiz(); }
-function kembaliMateri() {
-  sembunyikanSemuaBagian();
-  document.getElementById("materiSection").classList.remove("hidden");
-  window.scrollTo(0, 0);
-}
-function kembaliHome() {
-  sembunyikanSemuaBagian();
-  document.getElementById("home").classList.remove("hidden");
-  window.scrollTo(0, 0);
-}
-tampilkanMenu();
+    var line = lines[li];
+    if (ci === 0) {
+      promptStr = '<span class="prompt">' + line.t + '</span>';
+      currentLine = "";
+    }
+    if (line.typed && ci < line.typed.length) {
+      currentLine += line.typed[ci];
+      ci++;
+      render();
+      setTimeout(type, 45 + Math.random()*40);
+    } else if (line.typed && ci === line.typed.length) {
+      promptStr += '<span class="cmd">' + line.typed + '</span>\n';
+      currentLine = "";
+      ci = 0;
+      li++;
+      setTimeout(type, 250);
+    } else {
+      promptStr = '<span class="ok">' + line.t + '</span>\n';
+      term.innerHTML = promptStr;
+      ci = 0;
+      li++;
+      setTimeout(type, 300);
+    }
+  }
+  setTimeout(type, 300);
 </script>
 </body>
 </html>
